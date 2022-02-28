@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G417" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="APODList" representedClassName="APODList" syncable="YES" codeGenerationType="class">
+        <attribute name="copyright" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="explanation" optional="YES" attributeType="String"/>
+        <attribute name="hdurl" optional="YES" attributeType="String"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="mediaType" optional="YES" attributeType="String"/>
+        <attribute name="serviceVersion" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="APODList" positionX="-54" positionY="-9" width="128" height="179"/>
+    </elements>
 </model>

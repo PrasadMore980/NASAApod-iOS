@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         dateFormatter.timeStyle = .none
         return dateFormatter
     }()
-
+    
     private lazy var dateFormatterForAPI : DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
@@ -40,33 +40,46 @@ class ViewController: UIViewController {
     
     var preloadedArray : [NASAResponse] = []
     let viewModel = ViewModel.init()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let dateStr = dateFormatterForAPI.string(from: Date())
         let dateItem = UIBarButtonItem(customView: datePicker)
         navigationItem.leftBarButtonItem = dateItem
-        LoadingStart()
-        viewModel.loadData(dateStr: dateStr)
+        self.LoadingStart()
+        viewModel.view = self
+        viewModel.loadSavedData(dateStr: dateStr)
+        viewModel.loadSavedData(dateStr: dateStr)
     }
-
+    
     @objc func dateChanged(picker : UIDatePicker) {
         self.dismiss(animated: false, completion: nil)
         self.lblDate.text = dateFormatterForDisplay.string(from: picker.date)
         let dateStr = dateFormatterForAPI.string(from: datePicker.date)
         LoadingStart()
-        viewModel.loadData(dateStr: dateStr)
+        viewModel.loadSavedData(dateStr: dateStr)
     }
     
     func updateLabels(apodModel: NASAResponse) {
-        self.lblTitle.text = apodModel.title
-        self.lblDate.text = apodModel.date
+        DispatchQueue.main.async {
+            self.lblTitle.text = apodModel.title
+            self.lblDate.text = apodModel.date
+        }
     }
     
     func updateImage(imageData: Data) {
-        self.apodImage.image = UIImage(data: imageData)
-        self.LoadingStop()
+        DispatchQueue.main.async {
+            self.apodImage.image = UIImage(data: imageData)
+            self.LoadingStop()
+        }
     }
-
+    
+    func openVideo(mediaUrl: URL) {
+        DispatchQueue.main.async {
+            self.LoadingStop()
+            self.apodImage.image = nil
+            UIApplication.shared.open(mediaUrl)
+        }
+    }
 }
 

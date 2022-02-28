@@ -36,5 +36,13 @@ class APIHelper {
         getDataTask.resume()
     }
     
-    
+    func fetchImageData(imageUrl: String?, onCompletion: @escaping (Data?, Error?) -> ()) {
+        if let url = URL(string: imageUrl ?? "") {
+            let getDataTask = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
+                guard let data = data, error == nil else { return }
+                onCompletion(data, error)
+            })
+            getDataTask.resume()
+        }
+    }
 }

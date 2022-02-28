@@ -17,6 +17,10 @@
 		478BE91327CCCEBE009C4B76 /* NASAApodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BE91227CCCEBE009C4B76 /* NASAApodTests.swift */; };
 		478BE91D27CCCEBE009C4B76 /* NASAApodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BE91C27CCCEBE009C4B76 /* NASAApodUITests.swift */; };
 		478BE91F27CCCEBE009C4B76 /* NASAApodUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BE91E27CCCEBE009C4B76 /* NASAApodUITestsLaunchTests.swift */; };
+		478BE93427CCD614009C4B76 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BE93327CCD614009C4B76 /* DataModel.swift */; };
+		478BE93727CCD6A5009C4B76 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BE93627CCD6A5009C4B76 /* APIHelper.swift */; };
+		478BE93A27CCD6D3009C4B76 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BE93927CCD6D3009C4B76 /* Constants.swift */; };
+		478BE93C27CCD947009C4B76 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BE93B27CCD947009C4B76 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		478BE91827CCCEBE009C4B76 /* NASAApodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NASAApodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		478BE91C27CCCEBE009C4B76 /* NASAApodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAApodUITests.swift; sourceTree = "<group>"; };
 		478BE91E27CCCEBE009C4B76 /* NASAApodUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAApodUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		478BE93327CCD614009C4B76 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		478BE93627CCD6A5009C4B76 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		478BE93927CCD6D3009C4B76 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		478BE93B27CCD947009C4B76 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,8 @@
 		478BE8F727CCCEBA009C4B76 /* NASAApod */ = {
 			isa = PBXGroup;
 			children = (
+				478BE93827CCD6BE009C4B76 /* Utitlties */,
+				478BE93527CCD693009C4B76 /* Services */,
 				478BE92E27CCCF40009C4B76 /* ViewControllers */,
 				478BE92C27CCCF27009C4B76 /* ViewModel */,
 				478BE92B27CCCF0F009C4B76 /* Model */,
@@ -135,6 +145,7 @@
 		478BE92B27CCCF0F009C4B76 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				478BE93327CCD614009C4B76 /* DataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +153,7 @@
 		478BE92C27CCCF27009C4B76 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				478BE93B27CCD947009C4B76 /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -152,6 +164,22 @@
 				478BE8FC27CCCEBA009C4B76 /* ViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		478BE93527CCD693009C4B76 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				478BE93627CCD6A5009C4B76 /* APIHelper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		478BE93827CCD6BE009C4B76 /* Utitlties */ = {
+			isa = PBXGroup;
+			children = (
+				478BE93927CCD6D3009C4B76 /* Constants.swift */,
+			);
+			path = Utitlties;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,9 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				478BE93727CCD6A5009C4B76 /* APIHelper.swift in Sources */,
+				478BE93427CCD614009C4B76 /* DataModel.swift in Sources */,
 				478BE90327CCCEBA009C4B76 /* NASAApod.xcdatamodeld in Sources */,
 				478BE8FD27CCCEBA009C4B76 /* ViewController.swift in Sources */,
+				478BE93A27CCD6D3009C4B76 /* Constants.swift in Sources */,
 				478BE8F927CCCEBA009C4B76 /* AppDelegate.swift in Sources */,
+				478BE93C27CCD947009C4B76 /* ViewModel.swift in Sources */,
 				478BE8FB27CCCEBA009C4B76 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

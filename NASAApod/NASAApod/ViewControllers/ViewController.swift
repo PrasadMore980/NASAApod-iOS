@@ -38,11 +38,15 @@ class ViewController: UIViewController {
         return dateFormatter
     }()
     
+    var preloadedArray : [NASAResponse] = []
+    let viewModel = ViewModel.init()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let dateStr = dateFormatterForAPI.string(from: Date())
         let dateItem = UIBarButtonItem(customView: datePicker)
         navigationItem.leftBarButtonItem = dateItem
+        viewModel.loadData(dateStr: dateStr)
     }
 
 
@@ -50,6 +54,17 @@ class ViewController: UIViewController {
         self.dismiss(animated: false, completion: nil)
         self.lblDate.text = dateFormatterForDisplay.string(from: picker.date)
         let dateStr = dateFormatterForAPI.string(from: datePicker.date)
+        viewModel.loadData(dateStr: dateStr)
     }
+    
+    func updateLabels(apodModel: NASAResponse) {
+        self.lblTitle.text = apodModel.title
+        self.lblDate.text = apodModel.date
+    }
+    
+    func updateImage(imageData: Data) {
+        self.apodImage.image = UIImage(data: imageData)
+    }
+
 }
 

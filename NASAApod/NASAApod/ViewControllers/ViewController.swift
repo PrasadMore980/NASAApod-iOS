@@ -46,14 +46,15 @@ class ViewController: UIViewController {
         let dateStr = dateFormatterForAPI.string(from: Date())
         let dateItem = UIBarButtonItem(customView: datePicker)
         navigationItem.leftBarButtonItem = dateItem
+        LoadingStart()
         viewModel.loadData(dateStr: dateStr)
     }
-
 
     @objc func dateChanged(picker : UIDatePicker) {
         self.dismiss(animated: false, completion: nil)
         self.lblDate.text = dateFormatterForDisplay.string(from: picker.date)
         let dateStr = dateFormatterForAPI.string(from: datePicker.date)
+        LoadingStart()
         viewModel.loadData(dateStr: dateStr)
     }
     
@@ -64,6 +65,7 @@ class ViewController: UIViewController {
     
     func updateImage(imageData: Data) {
         self.apodImage.image = UIImage(data: imageData)
+        self.LoadingStop()
     }
 
 }

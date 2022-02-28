@@ -11,8 +11,8 @@ class ViewController: UIViewController {
     
     var selectedDate = Date()
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var apodImage: UIImageView!
+    @IBOutlet weak var detailsButton: UIButton!
     private lazy var datePicker : UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .compact
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     
     func updateLabels(apodModel: NASAResponse) {
         DispatchQueue.main.async {
-            self.lblTitle.text = apodModel.title
+            self.detailsButton.setTitle(apodModel.title, for: .normal)
             self.lblDate.text = apodModel.date
         }
     }
@@ -80,6 +80,14 @@ class ViewController: UIViewController {
             self.apodImage.image = nil
             UIApplication.shared.open(mediaUrl)
         }
+    }
+    
+    @IBAction func navigateToDetails(_ sender : UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        vc.currentDateModel = viewModel.currentDateModel
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
     }
 }
 

@@ -18,6 +18,7 @@ class ViewModel {
     func loadData(dateStr: String) {
         APIHelper.shared.getData(dateStr: dateStr, completionHandler: { responseObj, error in
             guard let firstObj = responseObj else { return }
+            self.currentDateModel = firstObj
             self.view?.updateLabels(apodModel: firstObj)
             if let mediaType = firstObj.mediaType, let url = firstObj.url,
                let mediaUrl = URL(string: url){

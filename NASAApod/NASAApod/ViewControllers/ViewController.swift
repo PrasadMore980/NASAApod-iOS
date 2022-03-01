@@ -43,13 +43,32 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dateStr = dateFormatterForAPI.string(from: Date())
-        let dateItem = UIBarButtonItem(customView: datePicker)
-        navigationItem.leftBarButtonItem = dateItem
+        setupNavigationBar()
         self.LoadingStart()
         viewModel.view = self
+        let dateStr = dateFormatterForAPI.string(from: datePicker.date)
         viewModel.loadSavedData(dateStr: dateStr)
-        viewModel.loadSavedData(dateStr: dateStr)
+    }
+    
+    func setupNavigationBar() {
+        let dateItem = UIBarButtonItem(customView: datePicker)
+        navigationItem.leftBarButtonItem = dateItem
+
+        let favImage = UIImage(systemName: "heart")
+        let listImage = UIImage(systemName: "list.bullet.rectangle.portrait")
+
+        let favButton = UIBarButtonItem(image: favImage,  style: .plain, target: self, action: #selector(self.favTapped(_:)))
+        let listButton = UIBarButtonItem(image: listImage,  style: .plain, target: self, action: #selector(self.favListTapped(_:)))
+        navigationItem.rightBarButtonItems = [favButton, listButton]
+
+    }
+    
+    @objc func favTapped(_ sender: Any) {
+        
+    }
+    
+    @objc func favListTapped(_ sender: Any) {
+        
     }
     
     @objc func dateChanged(picker : UIDatePicker) {

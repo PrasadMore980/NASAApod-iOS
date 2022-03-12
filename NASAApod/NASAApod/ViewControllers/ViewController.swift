@@ -40,31 +40,52 @@ class ViewController: UIViewController {
     
     var preloadedArray : [NASAResponse] = []
     let viewModel = ViewModel.init()
+    var favButton = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    var dateStr: String {
+        get {
+            let dateStr = dateFormatterForAPI.string(from: datePicker.date)
+            return dateStr
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         self.LoadingStart()
         viewModel.view = self
-        let dateStr = dateFormatterForAPI.string(from: datePicker.date)
         viewModel.loadSavedData(dateStr: dateStr)
+        setUpFavouriteButton()
+    }
+    
+    func setUpFavouriteButton() {
+        let isFavourite = viewModel.checkFavouriteStatus(dateStr: dateStr)
+        if isFavourite {
+            //        Favourite Button Heart Filled
+            favButton.setImage(Constants.favFilledImage, for: .normal)
+        } else {
+            //        Favourite Button Heart Empty
+            favButton.setImage(Constants.favImage, for: .normal)
+        }
     }
     
     func setupNavigationBar() {
         let dateItem = UIBarButtonItem(customView: datePicker)
         navigationItem.leftBarButtonItem = dateItem
-
-        let favImage = UIImage(systemName: "heart")
-        let listImage = UIImage(systemName: "list.bullet.rectangle.portrait")
-
-        let favButton = UIBarButtonItem(image: favImage,  style: .plain, target: self, action: #selector(self.favTapped(_:)))
-        let listButton = UIBarButtonItem(image: listImage,  style: .plain, target: self, action: #selector(self.favListTapped(_:)))
-        navigationItem.rightBarButtonItems = [favButton, listButton]
-
+        let favButtonItem = UIBarButtonItem(customView: favButton)
+        favButton.addTarget(self, action: #selector(self.favTapped(_:)), for: .touchUpInside)
+        let listButton = UIBarButtonItem(image: Constants.listImage,  style: .plain, target: self, action: #selector(self.favListTapped(_:)))
+        navigationItem.rightBarButtonItems = [favButtonItem, listButton]
     }
     
     @objc func favTapped(_ sender: Any) {
-        
+        let isFavourite = viewModel.updateFavouriteStatus(dateStr: dateStr)
+        if isFavourite {
+            //        Favourite Button Heart Filled
+            favButton.setImage(Constants.favFilledImage, for: .normal)
+        } else {
+            //        Favourite Button Heart Empty
+            favButton.setImage(Constants.favImage, for: .normal)
+        }
     }
     
     @objc func favListTapped(_ sender: Any) {
@@ -74,7 +95,6 @@ class ViewController: UIViewController {
     @objc func dateChanged(picker : UIDatePicker) {
         self.dismiss(animated: false, completion: nil)
         self.lblDate.text = dateFormatterForDisplay.string(from: picker.date)
-        let dateStr = dateFormatterForAPI.string(from: datePicker.date)
         LoadingStart()
         viewModel.loadSavedData(dateStr: dateStr)
     }

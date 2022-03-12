@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Constants {
     
@@ -17,5 +18,8 @@ class Constants {
 
     //Core Data Entity Name
     static let kEntityName = "APODList"
+    static let favFilledImage = UIImage(systemName: "heart.fill")
+    static let favImage = UIImage(systemName: "heart")
+    static let listImage = UIImage(systemName: "list.bullet.rectangle.portrait")
 
 }

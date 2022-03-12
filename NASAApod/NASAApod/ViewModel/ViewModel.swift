@@ -192,4 +192,57 @@ class ViewModel {
         }
     }
     
+    func updateFavouriteStatus(dateStr: String) -> Bool {
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.kEntityName)
+        fetchRequest.returnsObjectsAsFaults = false
+        do
+        {
+            let dates = try context.fetch(fetchRequest)
+            if dates != nil && dates.count != 0 {
+                for Entity in dates as [NSManagedObject] {
+                    if let savedDate = Entity.value(forKey: "date") as? String {
+                        if savedDate == dateStr {
+                            if let isFavourite = Entity.value(forKey: "isFavourite") as? Bool {
+                                if isFavourite {
+                                    Entity.setValue(false, forKey: "isFavourite")
+                                    return false
+                                } else {
+                                    Entity.setValue(true, forKey: "isFavourite")
+                                    return true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return false
+    }
+    
+    func checkFavouriteStatus(dateStr: String) -> Bool {
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.kEntityName)
+        fetchRequest.returnsObjectsAsFaults = false
+        do
+        {
+            let dates = try context.fetch(fetchRequest)
+            if dates != nil && dates.count != 0 {
+                for Entity in dates as [NSManagedObject] {
+                    if let savedDate = Entity.value(forKey: "date") as? String {
+                        if savedDate == dateStr {
+                            if let isFavourite = Entity.value(forKey: "isFavourite") as? Bool {
+                                return isFavourite
+                            }
+                        }
+                    }
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return false
+    }
 }
